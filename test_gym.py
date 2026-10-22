@@ -7,4 +7,3 @@ def test_initial_total():
     """Una cotización nueva comienza con total cero."""
     quote = GymQuote()
     assert quote.total == 0
-    

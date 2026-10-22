@@ -6,4 +6,3 @@ class GymQuote:  # pylint: disable=too-few-public-methods
 
     def __init__(self):
         self.total = 0
-        
