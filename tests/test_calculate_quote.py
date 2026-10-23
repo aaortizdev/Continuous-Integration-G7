@@ -1,3 +1,4 @@
+"""Pruebas unitarias para el requerimiento R8."""
 from gym import calculate_quote
 
 def test_calculate_quote_invalid_plan():
