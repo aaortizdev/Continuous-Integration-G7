@@ -18,7 +18,7 @@ class GymQuote:  # pylint: disable=too-few-public-methods
 
     def __init__(self):
         self.total = 0
-
+    
 def _normalize(name) -> str:
     """Devuelve el nombre en mayúsculas y sin espacios, o '' si no es texto."""
     return name.strip().upper() if isinstance(name, str) else ""
@@ -54,23 +54,32 @@ def calculate_subtotal(plan_price: float, extras_price: float, members: int) -> 
         return INVALID
     return (plan_price + extras_price) * members
 
+def apply_group_discount(subtotal: float, members: int) -> float:
+    """R4. Descuento grupal: 2 o más miembros obtienen 10% de descuento."""
+    if members >= 2:
+        return subtotal * 0.90
+    return subtotal
+
+def apply_special_offer(amount: float) -> float:
+    """R5. Oferta especial: si es > 400 resta 50; si es > 200 resta 20."""
+    if amount > 400:
+        return amount - 50.0
+    if amount > 200:
+        return amount - 20.0
+    return amount
+  
+def apply_premium_surcharge(amount: float, extras: list) -> float:
+    """R6. Recargo premium: si hay al menos un extra premium, suma 15%."""
+    has_premium = any(_normalize(e) in PREMIUM_EXTRAS for e in extras)
+    if has_premium:
+        return amount * 1.15
+    return amount
+  
 def round_final_total(total_amount: float, is_valid: bool) -> int:
     """R7: redondea half up a un entero; devuelve -1 si es inválido o se canceló."""
     if not is_valid or total_amount < 0:
         return INVALID
     return int(Decimal(str(total_amount)).quantize(Decimal("1"), rounding=ROUND_HALF_UP))
-
-def apply_group_discount(amount: float, members: int) -> float: # pylint: disable=unused-argument
-    """Aplica descuento por grupo (stub temporal)."""
-    return amount
-
-def apply_special_offer(amount: float) -> float:
-    """Aplica oferta especial (stub temporal)."""
-    return amount
-
-def apply_premium_surcharge(amount: float, extras: list) -> float: # pylint: disable=unused-argument
-    """Aplica recargo premium (stub temporal)."""
-    return amount
 
 def calculate_quote(plan: str, extras: list, members: int) -> int:
     """Calcula la cotización total uniendo las reglas del equipo."""
