@@ -1,7 +1,10 @@
 """Pruebas de la cotización del gimnasio."""
 
+import pytest
+
 from gym import GymQuote
 from gym import apply_group_discount, apply_special_offer, apply_premium_surcharge
+
 
 def test_initial_total():
     """Una cotización nueva comienza con total cero."""
@@ -40,7 +43,7 @@ def test_special_offer_less_or_equal_200():
 # R6 - Premium Surcharge
 def test_premium_surcharge_applied():
     """Prueba que se aplique el recargo premium."""
-    assert apply_premium_surcharge(100, ["premium_support"]) == 115.0
+    assert apply_premium_surcharge(100, ["premium_support"]) == pytest.approx(115.0)
 
 
 def test_premium_surcharge_not_applied():

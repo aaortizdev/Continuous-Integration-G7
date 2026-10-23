@@ -34,3 +34,5 @@ def apply_premium_surcharge(amount: float, extras: list) -> float:
     if has_premium:
         return amount * 1.15
     return amount
+
+    
