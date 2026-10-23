@@ -131,5 +131,3 @@ if __name__ == '__main__':
             print(f"Resultado: {final_result}")
         else:
             print("Resultado: -1")
-
-
