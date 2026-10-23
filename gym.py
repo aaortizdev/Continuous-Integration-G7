@@ -60,7 +60,7 @@ def round_final_total(total_amount: float, is_valid: bool) -> int:
         return INVALID
     return int(Decimal(str(total_amount)).quantize(Decimal("1"), rounding=ROUND_HALF_UP))
 
-def apply_group_discount(amount: float, members: int) -> float:
+def apply_group_discount(amount: float, members: int) -> float: # pylint: disable=unused-argument
     """Aplica descuento por grupo (stub temporal)."""
     return amount
 
@@ -68,7 +68,7 @@ def apply_special_offer(amount: float) -> float:
     """Aplica oferta especial (stub temporal)."""
     return amount
 
-def apply_premium_surcharge(amount: float, extras: list) -> float:
+def apply_premium_surcharge(amount: float, extras: list) -> float: # pylint: disable=unused-argument
     """Aplica recargo premium (stub temporal)."""
     return amount
 
