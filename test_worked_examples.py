@@ -60,5 +60,3 @@ from gym import calculate_quote
 def test_worked_examples(plan, extras, members, expected):
     """Cada ejemplo debe producir el total indicado en el enunciado."""
     assert calculate_quote(plan, extras, members) == expected
-
-    
